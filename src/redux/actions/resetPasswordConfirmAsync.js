@@ -19,7 +19,7 @@ export const resetPasswordConfirmAsync = (
 
     try {
       await axios.post(
-        `${process.env.REACT_APP_API_URL}/auth/users/reset_password_confirm/`,
+        `${process.env.REACT_APP_API_URL}/users/reset_password_confirm/`,
         body,
         config
       );

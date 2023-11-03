@@ -14,10 +14,12 @@ export const signupAsync = (name, email, password, re_password) => {
 
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_API_URL}/auth/users/`,
+        `${process.env.REACT_APP_API_URL}/users/`,
         body,
         config
       );
+
+      console.log(res.data);
 
       dispatch(signupSuccess(res.data));
     } catch (error) {

@@ -14,7 +14,7 @@ export const resetPasswordAsync = (email) => {
 
     try {
       await axios.post(
-        `${process.env.REACT_APP_API_URL}/auth/users/reset_password/`,
+        `${process.env.REACT_APP_API_URL}/users/reset_password/`,
         body,
         config
       );

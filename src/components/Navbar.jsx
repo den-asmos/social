@@ -22,12 +22,18 @@ const Navbar = () => {
         </Link>
 
         <div className="w-full flex justify-between items-center">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-4">
             <NavLink
               to="/"
               className="hover:text-[var(--color-violet)] duration-200 ease-in"
             >
               Home
+            </NavLink>
+            <NavLink
+              to="/posts"
+              className="hover:text-[var(--color-violet)] duration-200 ease-in"
+            >
+              Posts
             </NavLink>
           </div>
 

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { checkAuthenticatedAsync, loadUserAsync } from '../redux/actions';
+import { checkAuthenticatedAsync } from '../redux/actions';
 import { Navbar } from '../components';
 
 const Layout = ({ children }) => {
@@ -8,7 +8,6 @@ const Layout = ({ children }) => {
 
   useEffect(() => {
     dispatch(checkAuthenticatedAsync());
-    dispatch(loadUserAsync());
   }, []);
 
   return (

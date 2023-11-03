@@ -16,7 +16,7 @@ export const checkAuthenticatedAsync = () => {
 
       try {
         const res = await axios.post(
-          `${process.env.REACT_APP_API_URL}/auth/jwt/verify/`,
+          `${process.env.REACT_APP_API_URL}/jwt/verify/`,
           body,
           config
         );

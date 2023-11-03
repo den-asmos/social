@@ -14,7 +14,7 @@ export const verifyAsync = (uid, token) => {
 
     try {
       await axios.post(
-        `${process.env.REACT_APP_API_URL}/auth/users/activation/`,
+        `${process.env.REACT_APP_API_URL}users/activation/`,
         body,
         config
       );

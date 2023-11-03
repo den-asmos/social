@@ -6,7 +6,9 @@ import {
   ResetPassword,
   ResetPasswordConfirm,
   Signup,
+  Posts,
 } from './pages';
+import { Post } from './components';
 import { Layout } from './hocs';
 
 const App = () => {
@@ -16,6 +18,9 @@ const App = () => {
         <Route path="/activate/:uid/:token" element={<Activate />} />
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/posts" element={<Posts />}>
+          <Route path="/posts/:id" element={<Post />} />
+        </Route>
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route
           path="/password/reset/confirm/:uid/:token"

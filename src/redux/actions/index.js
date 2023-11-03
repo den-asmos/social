@@ -1,5 +1,4 @@
 import { loginAsync } from './loginAsync';
-import { loadUserAsync } from './loadUserAsync';
 import { signupAsync } from './signupAsync';
 import { verifyAsync } from './verifyAsync';
 import { checkAuthenticatedAsync } from './checkAuthenticatedAsync';
@@ -9,7 +8,6 @@ import { logout } from './logout';
 
 export {
   loginAsync,
-  loadUserAsync,
   signupAsync,
   verifyAsync,
   checkAuthenticatedAsync,

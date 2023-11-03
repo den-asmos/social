@@ -41,14 +41,6 @@ export const authReducer = (state = initalState, action) => {
       return { ...state, isAuthenticated: false };
     }
 
-    case ACTION_TYPES.USER_LOAD_SUCCESS: {
-      return { ...state, user: payload };
-    }
-
-    case ACTION_TYPES.USER_LOAD_FAIL: {
-      return { ...state, user: null };
-    }
-
     case ACTION_TYPES.AUTHENTICATED_SUCCESS: {
       return { ...state, isAuthenticated: true };
     }
