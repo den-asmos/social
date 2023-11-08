@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginAsync } from '../redux/actions';
-import { Button, Input } from '../components';
+import { Button, Input, Error } from '../components';
 
 const initialFormState = {
   email: '',
@@ -13,7 +13,7 @@ const Login = () => {
   const [formData, setFormData] = useState(initialFormState);
   const { email, password } = formData;
   const dispatch = useDispatch();
-  const { isAuthenticated } = useSelector((state) => state.auth);
+  const { isAuthenticated, error } = useSelector((state) => state.auth);
 
   const onChange = ({ target }) => {
     setFormData({ ...formData, [target.name]: target.value });
@@ -28,6 +28,9 @@ const Login = () => {
   if (isAuthenticated) {
     return <Navigate to="/" />;
   }
+
+  const errorMessage =
+    error?.response?.data?.detail || 'Something went wrong...';
 
   return (
     <div className="mt-14 flex justify-center items-center">
@@ -44,7 +47,7 @@ const Login = () => {
               onChange={onChange}
             />
           </div>
-          <div className="mt-8 mb-10">
+          <div className="mt-8">
             <Input
               type="password"
               name="password"
@@ -54,7 +57,9 @@ const Login = () => {
             />
           </div>
 
-          <Button type="submit" width="100%">
+          {error && <Error message={errorMessage} />}
+
+          <Button type="submit" width="100%" margin="mt-8">
             Login
           </Button>
         </form>

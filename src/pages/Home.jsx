@@ -1,9 +1,18 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { loadUserAsync } from '../redux/actions';
 import { Button } from '../components';
-import { useSelector } from 'react-redux';
 
 const Home = () => {
-  const { isAuthenticated } = useSelector((state) => state.auth);
+  const { isAuthenticated, access } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      dispatch(loadUserAsync(access));
+    }
+  }, [dispatch, isAuthenticated]);
 
   return (
     <div className="mt-4 flex justify-center items-center">

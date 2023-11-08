@@ -20,7 +20,7 @@ export const loginAsync = (email, password) => {
       );
       dispatch(loginSuccess(res.data));
     } catch (error) {
-      dispatch(loginFail());
+      dispatch(loginFail(error));
     }
   };
 };

@@ -6,9 +6,11 @@ import {
   ResetPassword,
   ResetPasswordConfirm,
   Signup,
+  Post,
   Posts,
+  PostEdit,
+  PostCreate,
 } from './pages';
-import { Post } from './components';
 import { Layout } from './hocs';
 
 const App = () => {
@@ -18,9 +20,10 @@ const App = () => {
         <Route path="/activate/:uid/:token" element={<Activate />} />
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/posts" element={<Posts />}>
-          <Route path="/posts/:id" element={<Post />} />
-        </Route>
+        <Route path="/posts" element={<Posts />} />
+        <Route path="/posts/:id" element={<Post />} />
+        <Route path="/posts/:id/edit" element={<PostEdit />} />
+        <Route path="/posts/create" element={<PostCreate />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route
           path="/password/reset/confirm/:uid/:token"

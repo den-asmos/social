@@ -18,12 +18,9 @@ export const signupAsync = (name, email, password, re_password) => {
         body,
         config
       );
-
-      console.log(res.data);
-
       dispatch(signupSuccess(res.data));
     } catch (error) {
-      dispatch(signupFail());
+      dispatch(signupFail(error));
     }
   };
 };

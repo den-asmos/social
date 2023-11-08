@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Navigate, useSearchParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { resetPasswordConfirmAsync } from '../redux/actions';
 import { Button, Input } from '../components';
@@ -14,7 +14,7 @@ const ResetPasswordConfirm = () => {
   const [formData, setFormData] = useState(initialFormState);
   const { new_password, re_new_password } = formData;
   const dispatch = useDispatch();
-  const [params] = useSearchParams();
+  const params = useParams();
 
   const onChange = ({ target }) => {
     setFormData({ ...formData, [target.name]: target.value });

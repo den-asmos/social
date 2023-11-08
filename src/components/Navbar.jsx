@@ -2,10 +2,32 @@ import { Link, NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../redux/actions';
 import Button from './Button';
+import { createIcon } from '../assets';
 
 const Navbar = () => {
   const { isAuthenticated } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+
+  const signedLinks = () => {
+    return (
+      <div className="flex items-center gap-4">
+        <NavLink
+          to="/posts"
+          className="hover:text-[var(--color-violet)] duration-200 ease-in"
+        >
+          Posts
+        </NavLink>
+        <Link to="/posts/create">
+          <Button invert={true} className="flex items-center gap-2">
+            <img src={createIcon} alt="create-icon" className="h-6 w-6" />
+            Create Post
+          </Button>
+        </Link>
+      </div>
+    );
+  };
+
+  const unsignedLinks = () => {};
 
   const onLogout = () => {
     dispatch(logout());
@@ -29,12 +51,7 @@ const Navbar = () => {
             >
               Home
             </NavLink>
-            <NavLink
-              to="/posts"
-              className="hover:text-[var(--color-violet)] duration-200 ease-in"
-            >
-              Posts
-            </NavLink>
+            {isAuthenticated ? signedLinks() : unsignedLinks()}
           </div>
 
           {isAuthenticated ? (

@@ -5,6 +5,7 @@ const initalState = {
   refresh: localStorage.getItem('refresh'),
   isAuthenticated: false,
   user: null,
+  error: null,
 };
 
 export const authReducer = (state = initalState, action) => {
@@ -19,7 +20,13 @@ export const authReducer = (state = initalState, action) => {
         access: payload.access,
         refresh: payload.refresh,
         isAuthenticated: true,
+        user: null,
+        error: null,
       };
+    }
+
+    case ACTION_TYPES.LOAD_USER: {
+      return { ...state, user: payload };
     }
 
     case ACTION_TYPES.LOGIN_FAIL:
@@ -34,15 +41,16 @@ export const authReducer = (state = initalState, action) => {
         refresh: null,
         isAuthenticated: false,
         user: null,
+        error: payload,
       };
     }
 
     case ACTION_TYPES.SIGNUP_SUCCESS: {
-      return { ...state, isAuthenticated: false };
+      return { ...state, isAuthenticated: false, error: null };
     }
 
     case ACTION_TYPES.AUTHENTICATED_SUCCESS: {
-      return { ...state, isAuthenticated: true };
+      return { ...state, isAuthenticated: true, error: null };
     }
 
     case ACTION_TYPES.AUTHENTICATED_FAIL: {

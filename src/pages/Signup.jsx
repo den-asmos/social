@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { signupAsync } from '../redux/actions';
-import { Button, Input } from '../components';
+import { Button, Input, Error } from '../components';
 
 const initialFormState = {
   name: '',
@@ -14,9 +14,10 @@ const initialFormState = {
 const Signup = () => {
   const [accountCreated, setAccountCreated] = useState(false);
   const [formData, setFormData] = useState(initialFormState);
+  const [formError, setFormError] = useState(null);
   const { name, email, password, re_password } = formData;
-  const dispatch = useDispatch();
   const { isAuthenticated } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
   const onChange = ({ target }) => {
     setFormData({ ...formData, [target.name]: target.value });
@@ -25,9 +26,13 @@ const Signup = () => {
   const onSubmit = (event) => {
     event.preventDefault();
 
+    setFormError(null);
+
     if (password === re_password) {
       dispatch(signupAsync(name, email, password, re_password));
       setAccountCreated(true);
+    } else {
+      setFormError(`Passwords don't match`);
     }
   };
 
@@ -72,7 +77,7 @@ const Signup = () => {
               onChange={onChange}
             />
           </div>
-          <div className="mt-8 mb-10">
+          <div className="mt-8">
             <Input
               type="password"
               name="re_password"
@@ -82,7 +87,9 @@ const Signup = () => {
             />
           </div>
 
-          <Button type="submit" width="100%">
+          {formError && <Error message={formError} />}
+
+          <Button type="submit" width="100%" margin="mt-8">
             Register
           </Button>
         </form>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Navigate, useSearchParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { verifyAsync } from '../redux/actions';
 import { Button } from '../components';
@@ -7,7 +7,7 @@ import { Button } from '../components';
 const Activate = () => {
   const [verified, setVerified] = useState(false);
   const dispatch = useDispatch();
-  const [params] = useSearchParams();
+  const params = useParams();
 
   const onVerify = () => {
     dispatch(verifyAsync(params.uid, params.token));
